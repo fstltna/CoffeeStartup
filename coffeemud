@@ -1,0 +1,95 @@
+#!/usr/bin/perl
+
+### BEGIN INIT INFO
+# Provides:          coffeemud
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Coffeemud service 1.0
+# Description:       Coffeemud service 1.0
+# Documentation:     https://synchronetbbs.org/index.php/forum/alternate-startup-scripts
+# Type:              forking
+# X-Interactive:     false
+### END INIT INFO
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 1, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+my $COFFEEMUDDIR = "/root/CoffeeMud";
+
+my $Command = $ARGV[0];
+if ($Command eq "")
+{
+	$Command = "NONE";
+}
+
+my $running=`ps ax|grep coffee_mud|grep -v grep`;
+
+if ($Command eq "start")
+{
+	if ($running eq "")
+	{
+		print "Starting Coffeemud...\n";
+		if (-f "$COFFEEMUDDIR/nostart")
+		{
+			print "Removing $COFFEEMUDDIR/nostart\n";
+			# Remove the lock file if it exists
+			unlink("$COFFEEMUDDIR/nostart");
+		}
+		# Start the screen process
+		system("nohup $COFFEEMUDDIR/startcoffeemud > /tmp/CoffeemudStartup.log\&");
+	}
+}
+elsif ($Command eq "stop")
+{
+	print "Stopping Coffeemud process...\n";
+	system("touch '$COFFEEMUDDIR/nostart'");
+	if ($running ne "")
+	{
+		# Process is running, kill it
+		system("killall coffee_mud");
+	}
+}
+elsif ($Command eq "restart")
+{
+	if (-f "$COFFEEMUDDIR/nostart")
+	{
+		print("Removing $COFFEEMUDDIR/nostart\n");
+		unlink("$COFFEEMUDDIR/nostart");
+	}
+	if ($running ne "")
+	{
+		system("killall coffee_mud");
+	}
+}
+elsif ($Command eq "status")
+{
+	if ($running ne "")
+	{
+		print("Coffeemud Server Running\n");
+	}
+	else
+	{
+		print("Coffeemud Server Not Running\n");
+	}
+}
+else
+{
+	print ("Uknown command '$Command'\n");
+	print ("Usage: $0 {start|status|stop|restart}\n");
+	exit(1);
+}
+
+exit(0);
