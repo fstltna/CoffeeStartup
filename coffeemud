@@ -6,9 +6,9 @@
 # Required-Stop:     $local_fs $remote_fs $network $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Coffeemud service 1.0
-# Description:       Coffeemud service 1.0
-# Documentation:     https://synchronetbbs.org/index.php/forum/alternate-startup-scripts
+# Short-Description: Coffeemud service 2.1.0
+# Description:       Coffeemud service 2.1.0
+# Documentation:     https://pocketmud.com/index.php/forum/server-utils
 # Type:              forking
 # X-Interactive:     false
 ### END INIT INFO
