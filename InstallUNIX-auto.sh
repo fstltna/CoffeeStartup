@@ -10,14 +10,14 @@ echo "***** MAKE SURE YOU ARE EXECUTING THIS SCRIPT FROM THE MAIN COFFEEMUD DIR 
 
 sleep 2
 
-Java_Home = "/usr/lib/jvm/jdk-12.0.1"
+export Java_Home = "/usr/lib/jvm/jdk-12.0.1"
 
 echo "Alright, we're good to go, compiling will begin in 2 seconds."
 
 sleep 2
 #Next we will set up some needed variables for compiling.... and then run an if statement
 
-JAVACPATH="$Java_Home/bin/javac -nowarn -g -deprecation -encoding UTF8 -classpath .:./lib/js.jar:./lib/jzlib.jar" 
+export JAVACPATH="$Java_Home/bin/javac -nowarn -g -deprecation -encoding UTF8 -classpath .:./lib/js.jar:./lib/jzlib.jar" 
 
 echo "About to begin main compile....."
 sleep 1
