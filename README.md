@@ -1,4 +1,4 @@
-# CoffeeMUD Startup Scripts (2.3.0)
+# CoffeeMUD Startup Scripts (2.3.1)
 Startup scripts for the CoffeeMUD MUD software - uses the "screen" command to manage a session. This also restarts the CoffeeMUD process if it crashes.
 
 Official support sites: [Official Github Repo](https://github.com/fstltna/CoffeeStartup) - [Official Forum](https://pocketmud.com/index.php/forum/server-utils)  - [Official Download Area](https://pocketmud.com/index.php/download-upload/category/4-servers)
