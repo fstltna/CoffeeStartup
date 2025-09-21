@@ -55,7 +55,7 @@ while (-1)
 			close($OUTF);
 			chdir $COFFEEMUDDIR;
 			print "Starting screen process\n";
-			system("$SCREENCMD -fa -S Coffeemud -d -U -m $COFFEEMUDDIR/mudUNIX.sh");
+			system("$SCREENCMD -fa -S Coffeemud -d -U -m $COFFEEMUDDIR/mud.sh");
 		}
 	}
 	# Sleep for 1 minute before checking again
